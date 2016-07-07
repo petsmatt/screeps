@@ -66,14 +66,14 @@ var roleRepairer = {
                     }
                 } else {
                     //Be a harvester for a tick
-                    console.log("Repairer being a harvester.")
-                    creep.memory.harvestTicks = 100;
+                    //console.log("Repairer being a harvester.")
+                    //creep.memory.harvestTicks = 100;
 
                     //Fuck all to do - go to the flag
-                    //targets = creep.room.find(FIND_FLAGS);
-                    //if (targets.length) {
-                    //    creep.moveTo(targets[0]);
-                    //}
+                    targets = creep.room.find(FIND_FLAGS);
+                    if (targets.length) {
+                        creep.moveTo(targets[0]);
+                    }
                 }
             }
         } else {
@@ -93,9 +93,9 @@ var roleRepairer = {
                     var moveRC = creep.moveTo(sources[1]);
                     if (moveRC == ERR_NO_PATH) {
                         //Can't get where we want to go at the moment.
-                        console.log("Creep " + creep.name + " move returns : " + moveRC + " I'm going to be a harvester instead");
-                        //Minimum ticks that I'll be harvesting is 100
-                        creep.memory.harvestTicks = 100
+                        //console.log("Creep " + creep.name + " move returns : " + moveRC + " I'm going to be a harvester instead");
+                        ////Minimum ticks that I'll be harvesting is 100
+                        //creep.memory.harvestTicks = 100
                     }
 
                 }

@@ -33,6 +33,9 @@ var roleHarvester = {
                 }
             }
         }
+
+        var closestSource = creep.pos.findClosestByRange(FIND_SOURCES);
+
     }
 };
 

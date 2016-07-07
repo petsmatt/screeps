@@ -27,7 +27,8 @@ var spawner = {
 
         //Harvesters, most important! But stop spawning once we have container energy stores.
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        if (harvesters.length < 2 && (containerEnergyTotal < 1250 || energyAvailable < 300)) {
+        var bigHarvesters = _.filter(Game.creeps, (b) => b.memory.role == 'bigHarvester');
+        if (harvesters.length < 2 && bigHarvesters.length < 3 && (containerEnergyTotal < 1250 || energyAvailable < 300)) {
             var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], undefined, { role: 'harvester' });
             console.log('Spawning new harvester: ' + newName);
         }
@@ -42,7 +43,7 @@ var spawner = {
                 console.log('Spawning new bigUpgrader: ' + newName);
             }
         } else {
-            if (bigUpgraders.length < 4 && upgraders.length < 4) {
+            if ((bigUpgraders.length + upgraders.length) < 4) {
                 var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE, MOVE], undefined, { role: 'upgrader' });
                 console.log('Spawning new upgrader: ' + newName);
             }
@@ -73,8 +74,7 @@ var spawner = {
         }
 
         //Get out the big harvesters once the room has good amount of energy
-        var bigHarvesters = _.filter(Game.creeps, (b) => b.memory.role == 'bigHarvester');
-        if (bigHarvesters.length < 2 && energyAvailable >= 400) {
+        if (bigHarvesters.length < 3 && harvesters.length < 3 && energyAvailable >= 400) {
             var newName = Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, { role: 'bigHarvester' });
             console.log('Spawning new Big Harvester: ' + newName);
         }
